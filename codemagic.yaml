@@ -1,3 +1,7 @@
-git add codemagic.yaml
-git commit -m 'Add first workflow'
-git push
+workflows:
+  my-workflow:
+    name: Build and test
+    scripts:
+      - echo "Building the project"
+      - xcodebuild -workspace MyApp.xcworkspace -scheme MyApp -sdk iphoneos -configuration Release archive -archivePath $HOME/build/MyApp.xcarchive
+      - xcodebuild -exportArchive -archivePath $HOME/build/MyApp.xcarchive -exportOptionsPlist exportOptions.plist -exportPath $HOME/build
